@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			img{
+				width: 400px;
+				height: 300px;
+			}
+			img[src=""]{
+				opacity: 0;
+			}
+			input{
+				font-size: 0;
+				opacity: 0;
+				position: relative;
+				left: -20px;
+				top: -5px;
+				z-index: 999;
+			}
+		</style>
+	</head>
+	<body>
+		<a>
+			浏览<input id="inp" type="file" multiple="multiple"/>
+		</a>
+		
+		<!--<img id="image" src=""  />-->
+		<script type="text/javascript">
+			var inp = document.getElementById("inp");
+			var body = document.getElementsByTagName("body")[0]
+			inp.onchange = function(){
+				for (var i=0;i<inp.files.length;i++) {
+					var freader = new FileReader();
+					var target = inp.files[i];
+					freader.readAsDataURL(target);
+					freader.onload = function(e){
+						var img = document.createElement("img");
+						img.src = e.target.result;
+						body.appendChild(img)
+					}
+				}
+				
+			}
+			
+			
+			
+			
+			
+			
+//			function Foo(){
+//				var i=0;
+//				return function(){
+//					document.write(i++)
+//				}
+//			}
+//			var f1 = Foo();
+//			var f2 = Foo();
+//			f2()
+//			f1()
+//			f2()
+		</script>
+	</body>
+</html>
